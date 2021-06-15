@@ -2,6 +2,7 @@ __version__ = '1.3.0'
 
 import sys
 import ujson
+import cProfile
 
 from .symbols import *
 from .symbols import Symbol

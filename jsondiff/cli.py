@@ -3,6 +3,7 @@ import jsondiff
 import ujson
 import warnings
 import sys
+import cProfile
 
 def main():
     parser = argparse.ArgumentParser()
@@ -15,6 +16,9 @@ def main():
 
     args = parser.parse_args()
 
+    cProfile.run('main_wrap(args)')
+
+def main_wrap(args):
     with open(args.first, "r") as f:
         with open(args.second, "r") as g:
             jf = ujson.load(f)
@@ -41,4 +45,4 @@ def main_deprecated():
     main()
 
 if __name__ == '__main__':
-    main()
+    cProfile.run('main()')
