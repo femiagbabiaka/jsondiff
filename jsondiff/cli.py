@@ -1,6 +1,6 @@
 import argparse
 import jsondiff
-import json
+import ujson
 import warnings
 import sys
 
@@ -17,8 +17,8 @@ def main():
 
     with open(args.first, "r") as f:
         with open(args.second, "r") as g:
-            jf = json.load(f)
-            jg = json.load(g)
+            jf = ujson.load(f)
+            jg = ujson.load(g)
             if args.patch:
                 x = jsondiff.patch(
                     jf,
@@ -34,7 +34,7 @@ def main():
                     syntax=args.syntax
                 )
 
-            json.dump(x, sys.stdout, indent=args.indent)
+            ujson.dump(x, sys.stdout, indent=args.indent)
 
 def main_deprecated():
     warnings.warn("jsondiff is deprecated. Use jdiff instead.", DeprecationWarning)

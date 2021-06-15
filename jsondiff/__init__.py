@@ -1,7 +1,7 @@
 __version__ = '1.3.0'
 
 import sys
-import json
+import ujson
 
 from .symbols import *
 from .symbols import Symbol
@@ -27,9 +27,9 @@ class JsonDumper(object):
 
     def __call__(self, obj, dest=None):
         if dest is None:
-            return json.dumps(obj, **self.kwargs)
+            return ujson.dumps(obj, **self.kwargs)
         else:
-            return json.dump(obj, dest, **self.kwargs)
+            return ujson.dump(obj, dest, **self.kwargs)
 
 
 default_dumper = JsonDumper()
@@ -41,9 +41,9 @@ class JsonLoader(object):
 
     def __call__(self, src):
         if isinstance(src, string_types):
-            return json.loads(src, **self.kwargs)
+            return ujson.loads(src, **self.kwargs)
         else:
-            return json.load(src, **self.kwargs)
+            return ujson.load(src, **self.kwargs)
 
 
 default_loader = JsonLoader()
